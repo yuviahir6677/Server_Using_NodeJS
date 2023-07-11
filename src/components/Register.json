@@ -1,0 +1,38 @@
+{
+
+    "title":"Register Form",
+    "subtitle":"Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.    ",
+    "form":{
+        "fname":{
+            "title":"First Name",
+            "id":"fname",
+            "type":"text"            
+        },
+        "lname":{
+            "title":"Last Name",
+            "id":"lname",
+            "type":"text" 
+        },
+        "email":{
+            "title":"Email",
+            "id":"email",
+            "type":"email" 
+        },
+        "password":{
+            "title":"password",
+            "id":"password",
+            "type":"password" 
+        },
+        "gender":{
+            "title":"Gender",
+            "id":"gender",
+            "type":"radio",
+            "options":["Male","Female"] 
+        }
+
+
+
+
+    }
+
+}
