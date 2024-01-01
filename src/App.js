@@ -2,6 +2,7 @@
 import Register from "./components/RegisterForm"; 
 import "./App.css";
 import Table from "./components/Table";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
