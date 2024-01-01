@@ -1,18 +1,49 @@
-// import { useState } from "react";
+import { useState } from "react";
 
 const   Register=()=> {
-  // let [formarray,setArray]=useState({
-  //   fname:'',
-  //   lname:'',
-  //   email:''
-
-
-  // })
+  
+  let [formarray,setArray]=useState({
+    fname:'',
+    lname:'',
+    email:'',
+    mob:'',
+    website:'',
+    pass:'',
+    cpass:'',
+  })
 
   let handleForm=(e)=>{
     setArray({...formarray,[e.target.id]:e.target.value})
   }
  
+  const submitdata=()=>{
+
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(formarray),
+      headers: { 'Content-Type': 'application/json' },
+    };
+    
+    fetch('http://localhost:3001/registration', options)
+      .then(response => response.json())
+      .then((response)=>{
+        setArray({
+          fname:'',
+          lname:'',
+          email:'',
+          mob:'',
+          website:'',
+          pass:'',
+          cpass:'',
+        })
+      })
+      .catch((err) => {
+      alert("Server Down")
+        console.error(err)
+      
+      });
+
+  }
 
   return (
     <div className="contents order-2 order-md-1">
@@ -28,6 +59,7 @@ const   Register=()=> {
                   <label for="fname">First Name</label>
                   <input type="text" className="form-control" value={formarray.fname}  onChange={(e)=>handleForm(e)}
                   placeholder="e.g. John" id="fname" />
+                  
                 </div>
               </div>
               <div className="col-md-6">
@@ -51,13 +83,18 @@ const   Register=()=> {
               <div className="col-md-6">
                 <div className="form-group first">
                   <label for="lname">Phone Number</label>
-                  <input type="text" className="form-control" placeholder="+00 0000 000 0000" id="lname" />
+                  <input type="text"
+                    value={formarray.mob}
+                  onChange={(e)=>handleForm(e)}
+                  className="form-control" placeholder="+00 0000 000 0000" id="mob" />
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="form-group first">
                   <label for="lname">Website</label>
-                  <input type="text" className="form-control" placeholder="e.g. https://google.com" id="lname" />
+                  <input type="text" className="form-control" placeholder="e.g. https://google.com" id="website"
+                  onChange={(e)=>handleForm(e)}
+                  value={formarray.website}  />
                 </div>
               </div>
             </div>
@@ -66,14 +103,18 @@ const   Register=()=> {
 
                 <div className="form-group last mb-3">
                   <label for="password">Password</label>
-                  <input type="password" className="form-control" placeholder="Your Password" id="password" />
+                  <input type="password" className="form-control"
+                  onChange={(e)=>handleForm(e)}   value={formarray.pass}  
+                  placeholder="Your Password" id="pass" />
                 </div>
               </div>
               <div className="col-md-6">
 
                 <div className="form-group last mb-3">
                   <label for="re-password">Re-type Password</label>
-                  <input type="password" className="form-control" placeholder="Your Password" id="re-password" />
+                  <input type="password" className="form-control"
+                  onChange={(e)=>handleForm(e)}   value={formarray.cpass}  
+                  placeholder="Your Password" id="cpass" />
                 </div>
               </div>
             </div>
@@ -87,7 +128,7 @@ const   Register=()=> {
               </div>
             </div>
 
-            <input type="button"  value="Register" className="btn px-5 btn-primary" />
+            <input type="button" onClick={submitdata} value="Register" className="btn px-5 btn-primary" />
 
           </form>
         </div>
